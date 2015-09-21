@@ -16,36 +16,30 @@
 				<h4>Search Restaurants</h4>
 				<form class="form-inline" role="form">
 					<div class="form-group">
-						<select name="searchCriteria" ng-model="data.searchCriteria">
-							<option ng-click="test = 1" value="restaurantName">Name</option>
-							<option ng-click="test = 2" value="restaurantRating">Rating</option>
+						<select  ng-model="searchCriteria">
+							<option value="restaurantName">Name</option>
+							<option value="restaurantLocation">Location</option>
+							<option value="restaurantCuisine">Cuisine</option>
+							<option value="restaurantRating">Rating</option>
 						</select>
-						<p>{{data.searchCriteria}} </p>
-						<!-- <input ng-show="data.searchCriteria === restaurantName" type="text" ng-model="queryByName" class="form-control" placeholder="Search by Name"> -->
-						<input ng-show="data.searchCriteria" type="text" ng-model="query.data.searchCriteria" class="form-control" placeholder="Search">
+						<input ng-init="search" ng-show="searchCriteria === 'restaurantName'" type="text" ng-model="search.name" class="form-control" placeholder="Search by Name">
+						<input ng-show="searchCriteria === 'restaurantLocation'" type="text" ng-model="search.location" class="form-control" placeholder="Search by Location">
+						<input ng-show="searchCriteria === 'restaurantCuisine'" type="text" ng-model="search.cuisine" class="form-control" placeholder="Search by Cuisine">
+						<input ng-show="searchCriteria === 'restaurantRating'" type="number" ng-model="search.rating" class="form-control" min="1" max="5"placeholder="Search by Rating">
 					</div>
 				</form>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-				<!-- <h2 ng-show="restaurants.length && filtered.length">Restaurant List</h2>
-				<h2 ng-show="restaurants.length && !filtered.length">No Matches</h2> -->
-
-				<h2 ng-show="restaurants.length && filteredRating.length">Restaurant List</h2>
-				<h2 ng-show="restaurants.length && !filteredRating.length">No Matches</h2>
+				<h2 ng-show="restaurants.length && filtered.length">Restaurant List</h2>
+				<h2 ng-show="restaurants.length && !filtered.length">No Matches</h2>
 				<ul>
-					<!-- <li ng-repeat="item in filtered = (restaurants | filter:queryByName)"> -->
-					<!--	{{ item.name + ", " + item.location + ", " + item.cuisine + ", " + item.rating }} -->
-					<li ng-repeat="itemObj in filteredRating = (restaurants | filter:query.data.searchCriteria)">
-						<!-- <span ng-click="editing = true" ng-hide="editing"> -->
+					<li ng-repeat="itemObj in filtered = (restaurants | filter:search)">
 						{{ itemObj.name + ", " + itemObj.location + ", " + itemObj.cuisine + ", " + itemObj.rating }}
-						 <!--<a ng-click="">Details</a>-->
-							<!-- </span> -->
 						<span class="form-group" ng-show="editing" ng-submit="editing = false">
 								<form class="form-inline" role="form">
 									<input type="text" class="form-control input-sm" ng-model="item.name" placeholder="Name" required />
-
 									<button type="submit" class="btn btn-default btn-sm">Save</button>
 								</form>
 							</span>
