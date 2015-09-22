@@ -16,16 +16,18 @@
 				<h4>Search Restaurants</h4>
 				<form class="form-inline" role="form">
 					<div class="form-group">
-						<select  ng-model="searchCriteria">
+						<select ng-model="searchCriteria" ng-click="search = ''">
 							<option value="restaurantName">Name</option>
 							<option value="restaurantLocation">Location</option>
 							<option value="restaurantCuisine">Cuisine</option>
 							<option value="restaurantRating">Rating</option>
 						</select>
-						<input ng-init="search" ng-show="searchCriteria === 'restaurantName'" type="text" ng-model="search.name" class="form-control" placeholder="Search by Name">
-						<input ng-show="searchCriteria === 'restaurantLocation'" type="text" ng-model="search.location" class="form-control" placeholder="Search by Location">
-						<input ng-show="searchCriteria === 'restaurantCuisine'" type="text" ng-model="search.cuisine" class="form-control" placeholder="Search by Cuisine">
-						<input ng-show="searchCriteria === 'restaurantRating'" type="number" ng-model="search.rating" class="form-control" min="1" max="5"placeholder="Search by Rating">
+						<div id="searchInput">
+							<input ng-show="searchCriteria === 'restaurantName'" type="text" ng-model="search.name" class="form-control" placeholder="Search by Name">
+							<input ng-show="searchCriteria === 'restaurantLocation'" type="text" ng-model="search.location" class="form-control" placeholder="Search by Location">
+							<input ng-show="searchCriteria === 'restaurantCuisine'" type="text" ng-model="search.cuisine" class="form-control" placeholder="Search by Cuisine">
+							<input ng-show="searchCriteria === 'restaurantRating'" type="number" ng-model="search.rating" class="form-control" min="1" max="5"placeholder="Search by Rating">
+						</div>
 					</div>
 				</form>
 			</div>
